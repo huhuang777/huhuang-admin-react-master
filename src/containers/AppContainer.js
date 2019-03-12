@@ -15,11 +15,10 @@ class AppContainer extends Component {
     return false
   }
 
-  layoutRender = ({ location }) => {
+  layoutRender = ( props ) => {
     const { routes } = this.props
     const Layout = routes.component
     const childRoutes = routes.childRoutes
-
     return (
       <Layout>
         <Switch>
@@ -27,7 +26,7 @@ class AppContainer extends Component {
             childRoutes.map((route, index) => {
               return (
                 route.redirect ? (
-                  <Redirect {...route.redirect} key={index} exact />
+                  <Redirect {...route.redirect} key={index} />
                 ) : (
                   <Route {...route} key={index} />
                 )
@@ -41,7 +40,6 @@ class AppContainer extends Component {
   
   render () {
     const { store, routes, children } = this.props
-
     return (
       <Provider store={store}>
         <div className="app">

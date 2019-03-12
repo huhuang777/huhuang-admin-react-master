@@ -1,7 +1,9 @@
-import React from 'react'
+//import React from 'react'
 import AppLayout from '../layouts/AppLayout'
 import Login from './Login'
-import PageNotFound from './PageNotFound'
+import PageNotFound from './404'
+import dashboard from './Dashboard'
+import codding from './codding'
 
 
 export const createRoutes = store => {
@@ -10,29 +12,34 @@ export const createRoutes = store => {
     component: AppLayout,
     childRoutes: [
       {
-        redirect: {
-          from: '/',
-          to: '/home',
-          push: false
-        }
-      },
-      {
-        redirect: {
-          from: '/article',
-          to: '/article/all',
-          push: false
-        }
-      },
-      {
         path: '/login',
         name: 'Login',
         component: Login,
         exact: true
       },
       {
+        redirect: {
+          from: '/',
+          to: '/dashboard',
+          exact: true,
+          push: false
+        }
+      },
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: dashboard,
+        exact: true
+      },
+      {
+        path: '/announcement',
+        name: 'announcement',
+        component: codding
+      },
+      {
         name: 'pageNotFound',
         component: PageNotFound
-      }
+      },
     ]
   }
 }

@@ -1,25 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './AppLayout.scss'
+import BasicLayout from "../BasicLayout"
 
 const singlePage = ['/login']
 
 export const AppLayout = ({ children, location}) => {
-
   return (
     <div>
       {
         singlePage.includes(location.pathname)
           ? children
-          : (
-              <div>
-                <div>
-                    {children}
-                </div>
-              </div>
-            )
+          : <BasicLayout location={location}>{children}</BasicLayout>
       }
-      
     </div>
   )
 }
