@@ -1,9 +1,9 @@
 // 文章列表
 
 import { fromJS } from 'immutable'
-import Service from '~service'
+import Service from '../../service'
 import { message } from 'antd'
-import { isType } from '~utils'
+import { isType } from '../../utils/utils.js'
 
 const defaultArticleModel = {
   title: '这是一篇新文章',

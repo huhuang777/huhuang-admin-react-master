@@ -1,7 +1,7 @@
 // Category 分类
 
 import { fromJS } from 'immutable'
-import Service from '~service'
+import Service from '../../service'
 import { message } from 'antd'
 
 const defaultCategoryModel = {

@@ -4,16 +4,10 @@ import BasicLayout from "../BasicLayout"
 
 const singlePage = ['/login']
 
-export const AppLayout = ({ children, location}) => {
-  return (
-    <div>
-      {
-        singlePage.includes(location.pathname)
-          ? children
-          : <BasicLayout location={location}>{children}</BasicLayout>
-      }
-    </div>
-  )
+export const AppLayout = ({children, location}) => {
+  return (singlePage.includes(location.pathname)
+    ? children
+    : <BasicLayout location={location}>{children}</BasicLayout>)
 }
 
 AppLayout.propTypes = {

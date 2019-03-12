@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import SiderMenu from "../SiderMenu"
 import {menu} from "../../config"
 import Header from "../Header"
+import PageLoading from "../../components/PageLoading"
 import styles from './basicLayout.module.less';
 
 class BasicLayout extends React.Component {
@@ -65,7 +66,7 @@ class BasicLayout extends React.Component {
             {...this.props}
           />
           <Content className={styles.content}>
-            {this.props.children}
+            <Suspense fallback={<PageLoading />}>{this.props.children}</Suspense>
           </Content>
         </Layout>
       </Layout>

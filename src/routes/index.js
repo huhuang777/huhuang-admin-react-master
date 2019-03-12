@@ -1,10 +1,13 @@
-//import React from 'react'
-import AppLayout from '../layouts/AppLayout'
-import Login from './Login'
-import PageNotFound from './404'
-import dashboard from './Dashboard'
-import codding from './codding'
 
+import { lazy } from 'react';
+
+import AppLayout from '../layouts/AppLayout'
+
+const dashboard = lazy(() => import('./Dashboard'));
+const Login = lazy(() => import('./Login'));
+const PageNotFound = lazy(() => import('./404'));
+const codding = lazy(() => import('./codding'));
+const ArticleList = lazy(() => import('./Article/list'));
 
 export const createRoutes = store => {
   return {
@@ -35,6 +38,12 @@ export const createRoutes = store => {
         path: '/announcement',
         name: 'announcement',
         component: codding
+      },
+      {
+        path: '/article/list',
+        name: 'articleList',
+        component: ArticleList,
+        exact: true
       },
       {
         name: 'pageNotFound',

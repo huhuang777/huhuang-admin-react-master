@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
+import createStore from "../store"
 
 class AppContainer extends Component {
 
   static propTypes = {
-    store: PropTypes.object.isRequired,
     routes: PropTypes.object.isRequired,
     children: PropTypes.element // Just React DevTools
   }
@@ -39,7 +39,8 @@ class AppContainer extends Component {
   }
   
   render () {
-    const { store, routes, children } = this.props
+    const { routes, children } = this.props
+    const store = createStore() 
     return (
       <Provider store={store}>
         <div className="app">
