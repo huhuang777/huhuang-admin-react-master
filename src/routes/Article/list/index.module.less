@@ -13,6 +13,15 @@
   .tableAlert {
     margin: 16px 0;
   }
+  :global {
+    .ant-table-tbody > tr{
+      height: 13em;
+      td {
+        padding:8px !important;
+      }
+    }
+  }
+  
 }
 
 @media screen and (max-width: @screen-sm) {
@@ -39,11 +48,6 @@
         width: 16em;
       }
     }
-  }
-}
-:global {
-  .ant-table-tbody > tr{
-    height: 13em;
   }
 }
 
@@ -84,4 +88,9 @@
     color: #70737c;
   }
 }
-
+.actionList{
+  button{
+    margin-bottom: 8px;
+    font-size: 12px !important
+  }
+}

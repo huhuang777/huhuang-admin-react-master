@@ -8,6 +8,7 @@ const Login = lazy(() => import('./Login'));
 const PageNotFound = lazy(() => import('./404'));
 const codding = lazy(() => import('./codding'));
 const ArticleList = lazy(() => import('./Article/list'));
+const ArticleCategory = lazy(() => import('./Article/category'));
 
 export const createRoutes = store => {
   return {
@@ -43,6 +44,12 @@ export const createRoutes = store => {
         path: '/article/list',
         name: 'articleList',
         component: ArticleList,
+        exact: true
+      },
+      {
+        path: '/article/category',
+        name: 'ArticleCategory',
+        component: ArticleCategory,
         exact: true
       },
       {

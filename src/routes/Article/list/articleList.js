@@ -77,7 +77,8 @@ class ArticleList extends Component {
           className={styles.extraContentSearch}
           placeholder="请输入"
           enterButton="搜索"
-          onSearch={() => ({})}/>
+          onSearch={() => ({})} 
+        />
       </div>
     )
     return (
@@ -87,16 +88,19 @@ class ArticleList extends Component {
         extra={extraContent}
         bodyStyle={{
         padding: '0 32px 40px 32px'
-      }}>
+      }}
+      >
         <Form layout="inline" style={{
           paddingTop: 11
-        }}>
+        }}
+        >
           <StandardFormRow
             title="所属分类"
             block
             style={{
             paddingBottom: 11
-          }}>
+          }}
+          >
             <FormItem>
               {getFieldDecorator('category')(
                 <TagSelect expandable actionsText={actionsTextMap}>
@@ -110,7 +114,8 @@ class ArticleList extends Component {
             block
             style={{
             paddingBottom: 11
-          }}>
+          }}
+          >
             <FormItem key="tags">
               {getFieldDecorator('tags')(
                 <TagSelect expandable actionsText={actionsTextMap}>
@@ -129,7 +134,8 @@ class ArticleList extends Component {
                       style={{
                       maxWidth: 200,
                       width: '100%'
-                    }}>
+                    }}
+                    >
                       <Option value={PublicState.all}>不限</Option>
                       <Option value={PublicState.public}>公开</Option>
                       <Option value={PublicState.password}>密码</Option>
@@ -146,7 +152,8 @@ class ArticleList extends Component {
                       style={{
                       maxWidth: 200,
                       width: '100%'
-                    }}>
+                    }}
+                    >
                       <Option value={OriginState.all}>不限</Option>
                       <Option value={OriginState.original}>原创</Option>
                       <Option value={OriginState.reprint}>转载</Option>
@@ -158,9 +165,7 @@ class ArticleList extends Component {
             </Row>
           </StandardFormRow>
         </Form>
-        <TableList>
-
-        </TableList>
+        <TableList />
       </Card>
     );
   };
