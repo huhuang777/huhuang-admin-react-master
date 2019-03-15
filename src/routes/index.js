@@ -9,7 +9,7 @@ const PageNotFound = lazy(() => import('./404'));
 const codding = lazy(() => import('./codding'));
 const ArticleList = lazy(() => import('./Article/list'));
 const ArticleCategory = lazy(() => import('./Article/category'));
-
+const ArticleEditComponent = lazy(() => import('./Article/edit'));
 export const createRoutes = store => {
   return {
     basename: '/',
@@ -51,6 +51,14 @@ export const createRoutes = store => {
         name: 'ArticleCategory',
         component: ArticleCategory,
         exact: true
+      },
+      {
+        path: '/article/post',
+        component: ArticleEditComponent
+      },
+      {
+        path: '/article/edit/:article_id',
+        component: ArticleEditComponent
       },
       {
         name: 'pageNotFound',

@@ -24,9 +24,9 @@ class TagSelect extends Component {
   static defaultProps = {
     hideCheckAll: false,
     actionsText: {
-      expandText: 'Expand',
-      collapseText: 'Collapse',
-      selectAllText: 'All',
+      expandText: '展开',
+      collapseText: '收起',
+      selectAllText: '全部',
     },
   };
 

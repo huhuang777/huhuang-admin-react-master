@@ -24,43 +24,43 @@ export class AllCategory extends Component {
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"2",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"3",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"4",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"5",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"6",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"7",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
       count:2
     },{
-      id:"1",
+      id:"8",
       name:"编译原理",
       slug:"compilation",
       description:"编译原理编译原理编译原理编译原理编译原理编译原理",
@@ -176,7 +176,7 @@ export class AllCategory extends Component {
                       )}
                   <span className={styles["sub-little-text"]}>该分类的描述</span>
                 </FormItem>
-                <FormItem label="自定义描述">
+                <FormItem label="自定义扩展">
                   <div className={styles.extendsBox}>
                     {
                       this.state.model.extends.map((item, index) => (
