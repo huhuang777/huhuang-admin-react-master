@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 import SiderMenu from "../SiderMenu"
 import {menu} from "../../config"
 import Header from "../Header"
-import PageLoading from "../../components/PageLoading"
 import styles from './basicLayout.module.less';
-
+import { TOKEN } from '../../constants/auth';
 class BasicLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,12 @@ class BasicLayout extends React.Component {
       collapsed:false
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    const token= localStorage.getItem(TOKEN);
+    if(!token){
+      this.props.history.push("/login");
+    }
+  }
   
   getLayoutStyle = () => {
     const { collapsed } = this.state;
@@ -37,7 +41,8 @@ class BasicLayout extends React.Component {
   onMenuClick({ key }){
     if(key==="logout"){
       console.log(this.props);
-      //this.props.history.push("/login");
+      this.props.history.push("/login");
+      localStorage.removeItem(TOKEN);
     }
   }
 
@@ -66,7 +71,7 @@ class BasicLayout extends React.Component {
             {...this.props}
           />
           <Content className={styles.content}>
-            <Suspense fallback={<PageLoading />}>{this.props.children}</Suspense>
+            {this.props.children}
           </Content>
         </Layout>
       </Layout>

@@ -1,18 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import BasicLayout from "../BasicLayout"
 
 const singlePage = ['/login']
 
-export const AppLayout = ({children, location}) => {
+export const AppLayout = (param) => {
+  const {children, location,history} = param;
   return (singlePage.includes(location.pathname)
     ? children
-    : <BasicLayout location={location}>{children}</BasicLayout>)
-}
-
-AppLayout.propTypes = {
-  children: PropTypes.element.isRequired,
-  location: PropTypes.object.isRequired
+    : <BasicLayout location={location} history={history}>{children}</BasicLayout>)
 }
 
 export default AppLayout

@@ -1,25 +1,20 @@
 import { fromJS } from 'immutable'
 import axios from 'axios'
 import { message } from 'antd'
+import { SERVER_ERROR, GATEWAY_TIMEOUT, UNKNOWN_ERROR } from '../config';
+import { isAuthPage } from '../discriminators/url';
+import { checkTokenIsOk } from '../discriminators/token';
+import { TOKEN, TOKEN_HEADER } from '../constants/auth';
 
 const isProd = process.env.NODE_ENV === 'production'
 
 export const fetcher = axios.create({
-  baseURL: !isProd ? 'http://localhost:7001/v1' : 'http://api.jooger.com/v1',
-  timeout: 5000
+  baseURL: !isProd ? 'http://localhost:8000/' : 'http://api.huhuang.net/',
+  timeout: 50000
 })
-
-const CODE = {
-  FAILED: -1,
-  SUCCESS: 0,
-  UNAUTHORIZED: 401
-}
 
 fetcher.interceptors.request.use(config => {
   config.params = config.params || {}
-  if (!isProd) {
-    config.params._DEV_ = true
-  }
   return config
 })
 
@@ -28,30 +23,45 @@ fetcher.interceptors.response.use(response => {
     // TODO 提示服务器异常
     message.error('服务器异常')
   }
-  const { code, data } = response.data
-  switch (code) {
-    case CODE.UNAUTHORIZED:
-      message.warning('禁地勿闯！！！')
-      break
-    case CODE.FAILED:
-      message.error(response.data.message)
-      break
-    case CODE.SUCCESS:
-      if (response.config.method.toLocaleUpperCase() !== 'GET') {
-        message.success(response.data.message)
-      }
-      break
-    default:
-      break
-  }
-  return { code, data: fromJS(data) }
+  return response.data
 }, error => {
-  let status = error.response.status
-  message.error('请求错误' + (status ? `，code:${status}` : ''))
-  return error.response
+  return error
 })
 
-const wrap = (type, url) => (config = {}) => fetcher.request({ ...config, method: type, url })
+const wrap = (type, url) => (config = {}) => {
+  return new Promise((resolve, reject)=>{
+    const headers = { 'Content-Type': 'application/json; charset=utf-8' }
+      // 跳转去登陆
+    if (isAuthPage(url)) {
+     
+    }
+      // 检查 token，创建一个合理的头
+    if (checkTokenIsOk()) {
+      const _token = localStorage.getItem(TOKEN);
+      headers[TOKEN_HEADER]=`Bearer ${_token}`;
+      config.headers=headers;
+    } else if(!isAuthPage(url)){
+      message.error('Token 不存在或是无效的');
+      return;
+    }
+    fetcher.request({ ...config, method: type, url }).then(response=>{
+      if (response.code) {
+        message.success(response.message);
+        return resolve(response);
+      } else {
+        message.error(response.message);
+        return reject(response);
+      }
+    }).catch(response=>{
+      const responseError = [SERVER_ERROR, GATEWAY_TIMEOUT, UNKNOWN_ERROR].includes(response.status);
+      if (responseError) {
+        const errMessage = response.message || response.statusText;
+        message.error(errMessage);
+      }
+      return reject(response);
+    });
+  })
+}
 
 const Service = {
   auth: {

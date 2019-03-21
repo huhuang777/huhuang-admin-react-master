@@ -8,7 +8,7 @@ import './assets/styles/app.scss'
 const MOUNT_NODE = document.getElementById('root')
 
 const renderApp = (DevTools = null) => {
-    serviceWorker.unregister();
+    serviceWorker.register();
     const routes = createRoutes(); 
       // const DevTools = require('~components/DevTools').default
       render(

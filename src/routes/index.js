@@ -2,14 +2,22 @@
 import { lazy } from 'react';
 
 import AppLayout from '../layouts/AppLayout'
+import dashboard from './Dashboard'
+import Login from './Login'
+import PageNotFound from './404'
+import codding from './codding'
+import ArticleList from './Article/list'
+import ArticleCategory from './Article/category'
+import ArticleEditComponent from './Article/edit'
 
-const dashboard = lazy(() => import('./Dashboard'));
-const Login = lazy(() => import('./Login'));
-const PageNotFound = lazy(() => import('./404'));
-const codding = lazy(() => import('./codding'));
-const ArticleList = lazy(() => import('./Article/list'));
-const ArticleCategory = lazy(() => import('./Article/category'));
-const ArticleEditComponent = lazy(() => import('./Article/edit'));
+// const dashboard = require('./Dashboard');
+// const Login = require('./Login');
+// const PageNotFound = require('./404');
+// const codding = require('./codding');
+// const ArticleList = require('./Article/list');
+// const ArticleCategory = require('./Article/category');
+// const ArticleEditComponent =require('./Article/edit');
+
 export const createRoutes = store => {
   return {
     basename: '/',
@@ -19,7 +27,8 @@ export const createRoutes = store => {
         path: '/login',
         name: 'Login',
         component: Login,
-        exact: true
+        exact: true,
+        noLogin:true
       },
       {
         redirect: {

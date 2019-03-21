@@ -2,21 +2,37 @@ import React, {Component} from 'react'
 // import PropTypes from 'prop-types'
 import {Button, Row, Form, Input, Icon} from 'antd'
 import styles from '../assets/Login.module.less'
+import Service from "../../../service"
+import { TOKEN } from '../../../constants/auth';
 
 const FormItem = Form.Item
-
+const {auth} = Service
 export class Login extends Component {
 
   state = {
     loginLoading: false
   }
+  componentWillMount(){
+    const token = localStorage.getItem(TOKEN);
+    if(token){
+      this.props.history.push("/dashboard");
+    }
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this
-      .props
-      .history
-      .push("");
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        auth.login({ data: values }).then(res=>{
+          if (res.result.token) {
+            localStorage.setItem(TOKEN, res.result.token);
+            this.props.history.push("/dashboard");
+          }
+        }).catch(err => {
+          console.warn('登陆系统失败！', err);
+        });
+      }
+    })
   }
 
   render() {
@@ -54,10 +70,11 @@ export class Login extends Component {
           <Form onSubmit={this.handleSubmit}>
             {
               inputList.map((item, index) => {
+                const Labb = item.name !== "password"?Input:Input.Password;
                 return (
-                  <FormItem key={item.name}>
+                  <FormItem hasFeedback key={item.name}>
                     {getFieldDecorator(item.name, {rules: item.rules})(
-                      <Input
+                      <Labb
                         size="large"
                         prefix={< Icon type = {
                         item.icon

@@ -192,7 +192,7 @@ export class AllCategory extends Component {
       }, 
     });
     const {model} = this.state;
-    this.props.form.initialValue(model);
+    this.props.form.setFieldsValue(model);
   }
   handleSubmit = (e) => {
     e.preventDefault();

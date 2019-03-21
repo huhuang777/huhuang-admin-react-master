@@ -1,7 +1,4 @@
-export { default as menu } from './menu'
-export { default as admin } from './admin'
 
-export const iconfontUrl="//at.alicdn.com/t/font_789538_ow90c6rv1xd.js"
 
 // 返回正常但业务错误
 export const HTTP_SUCCESS = 200;

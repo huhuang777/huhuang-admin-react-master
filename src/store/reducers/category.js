@@ -46,12 +46,9 @@ export const fetchCategoryList = () => (dispatch, getState) => {
     return
   }
   dispatch(requestCategoryList())
-  return Service.category.getList().then(({code, data}) => {
-    if (!code) {
-      dispatch(requestCategoryListSuccess(data))
-    }
-    return code
-  }).catch(err => dispatch(requestCategoryListFailure(err)))
+  return Service.category.getList().then(({result}) => {
+      dispatch(requestCategoryListSuccess(fromJS(result.data)))
+ }).catch(err => dispatch(requestCategoryListFailure(err)))
 }
 
 
