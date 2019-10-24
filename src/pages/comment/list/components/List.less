@@ -1,0 +1,131 @@
+@import '~themes/vars';
+
+.table {
+  :global {
+    .ant-table td {
+      white-space: nowrap;
+    }
+
+    .ant-table-tbody>tr {
+      height: 13em;
+
+      td {
+        padding: 8px !important;
+      }
+    }
+  }
+}
+
+h4 {
+  font-size: 18px;
+}
+
+.searchCell {
+  .buttonGroup {
+    margin-left: 16px;
+  }
+
+  .extraContentSearch {
+    width: 272px;
+    margin-left: 16px;
+  }
+}
+
+.tableAlert {
+  margin: 16px 0;
+
+  span {
+    cursor: pointer;
+  }
+}
+
+
+@media screen and (max-width: @screen-sm) {
+  .searchCell {
+    .extraContentSearch {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .headerInfo {
+      margin-bottom: 16px;
+
+      &>em {
+        display: none;
+      }
+    }
+  }
+}
+
+.contnet-top-tools {
+  >.article-get-form {
+    >.input-group {
+      >.form-control {
+        width: 16em;
+      }
+    }
+  }
+}
+
+
+.actionList {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin-bottom: 8px;
+    font-size: 12px !important;
+  }
+}
+
+.comment-search-form {
+
+  >.input-group {
+
+    >.form-control {
+      width: 16em;
+    }
+  }
+}
+
+
+
+.batch-checkbox {
+
+  text-align: left;
+  padding-left: 2em;
+}
+
+.comment-err-msg {
+  margin: 1em 0;
+}
+
+tbody {
+
+  tr {
+
+    &.comment-item {
+      height: 13em;
+    }
+
+    td {
+
+      &.comment-content {
+        line-height: 2;
+        word-break: break-word;
+      }
+
+      &.comment-user {
+
+        >.name,
+        >.email,
+        >.site {
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

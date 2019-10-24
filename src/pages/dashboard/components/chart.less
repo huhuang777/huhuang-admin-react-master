@@ -1,0 +1,64 @@
+.ga-box {
+  position: relative;
+  min-height: 400px;
+
+  .toolbar {
+    display: none;
+    display: flex;
+    margin-bottom: 1rem;
+
+    .btn {
+      margin-right: 1rem;
+    }
+
+    .selector {
+      flex-grow: 1;
+      display: flex;
+
+      &.hide {
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility opacity .2s;
+      }
+
+      &.show {
+        opacity: 1;
+        visibility: visible;
+        transition: visibility opacity .2s;
+      }
+
+      table {
+        margin-right: 1rem;
+
+        tr {
+          td {
+            &:last-child * {
+              display: block;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pie-charts {
+    display: flex;
+    justify-content: space-between;
+    min-height: 200px;
+
+    .chart {
+      width: calc(100% - (3rem) / 4);
+
+      &.country,
+      &.city,
+      &.browser {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .timeline {
+    min-height: 200px;
+  }
+}
